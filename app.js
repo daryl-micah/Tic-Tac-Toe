@@ -20,25 +20,27 @@ const winPatterns = [
 
 boxes.forEach((box) => {
     box.addEventListener("click", () => {
-      if (turnO) {
-        //playerO
-        box.innerText = "O";
-        turnO = false;
-      } else {
-        //playerX
-        box.innerText = "X";
-        turnO = true;
-      }
-      box.disabled = true;
-      count++;
-  
-      let isWinner = checkWinner();
-  
-      if (count === 9 && !isWinner) {
-        gameDraw();
-      }
+        console.log("box clicked");
+        if (!box.disabled) {
+            if (turnO) {
+                box.innerText = "O";
+                turnO = false;
+            } else {
+                box.innerText = "X";
+                turnO = true;
+            }
+            box.disabled = true;
+            count++;
+
+            let isWinner = checkWinner();
+
+            if (count === 9 && !isWinner) {
+                gameDraw();
+            }
+        }
     });
-  });
+});
+
 
 const enableBoxes = () => {
     for(let box of boxes) {
@@ -76,6 +78,7 @@ const checkWinner = () => {
             if(pos1 === pos2 && pos2 === pos3){
                 console.log("winner ", pos1);
                 showWinner(pos1);
+                return true;
             }
         }
     }
