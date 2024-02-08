@@ -34,10 +34,8 @@ boxes.forEach((box) => {
 
             let isWinner = checkWinner();
 
-            if (isWinner && count === 9) {
+            if (count === 9 && !isWinner) {
                 gameDraw();
-            } else if (!isWinner && count === 9) {
-                showWinner();
             }
         }
     });
@@ -80,6 +78,7 @@ const checkWinner = () => {
             if(pos1 === pos2 && pos2 === pos3){
                 console.log("winner ", pos1);
                 showWinner(pos1);
+                return true;
             }
         }
     }
